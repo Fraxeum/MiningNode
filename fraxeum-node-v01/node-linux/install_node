@@ -6,4 +6,4 @@
 #echo -n "Select the environment: "
 #read environment
 #sudo chef-solo -c solo.rb -j node.json  -E $environment
-sudo chef-solo -c solo.rb -j node_connect_to_chain.json
+sudo chef-solo -c /root/MiningNode/fraxeum-node-v01/node-linux/solo.rb -j /root/MiningNode/fraxeum-node-v01/node-linux/node_connect_to_chain.json
