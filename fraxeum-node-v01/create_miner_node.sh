@@ -6,8 +6,8 @@ sudo apt install git &&
 
 curl -L https://www.opscode.com/chef/install.sh | sudo bash &&
 
-git clone https://github.com/fraxeum/fraxeum-node-v01.git &&
+git clone https://github.com/Fraxeum/MiningNode.git &&
 
-cd blockchain/node-linux &&
+cd MiningNode/fraxeum-node-v01/node-linux &&
 
 sudo sh install_node &&
