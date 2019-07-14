@@ -6,7 +6,7 @@ sudo apt install git &&
 
 curl -L https://www.opscode.com/chef/install.sh | sudo bash &&
 
-git clone https://github.com/dreamAlpha/dreamblock-node-v01.git &&
+git clone https://github.com/fraxeum/fraxeum-node-v01.git &&
 
 cd blockchain/node-linux &&
 
