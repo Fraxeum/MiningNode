@@ -7,4 +7,5 @@
 #read environment
 #sudo chef-solo -c solo.rb -j node.json  -E $environment
 #sudo chef-solo -c /root/MiningNode/fraxeum-node-v01/node-linux/solo.rb -j /root/MiningNode/fraxeum-node-v01/node-linux/node_connect_to_chain.json
-sudo chef-solo -c MiningNode/fraxeum-node-v01/node-linux/solo.rb -j MiningNode/fraxeum-node-v01/node-linux/node_connect_to_chain.json --chef-license accept
+#sudo chef-solo -c MiningNode/fraxeum-node-v01/node-linux/solo.rb -j MiningNode/fraxeum-node-v01/node-linux/node_connect_to_chain.json --chef-license accept
+sudo chef-solo -c solo.rb -j node_connect_to_chain.json --chef-license accept
