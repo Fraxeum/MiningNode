@@ -48,11 +48,6 @@ echo "::~~~~~~~~~~~INSTALLING CURL ~~~~~~~~~~~~::" &&
 
 sudo apt install curl &&
 
-echo "::~~~~~~~~~~~INSTALLING GEDIT ~~~~~~~~~~~~::" &&
-
-sudo apt install curl &&
-
-
 echo "::~~~~~~~~~~~INSTALLING GIT~~~~~~~~~~~~::" &&
 
 sudo apt install git &&
