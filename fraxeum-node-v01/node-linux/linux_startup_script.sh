@@ -1,31 +1,37 @@
 #!/bin/bash
 
-#-------- EDIT THE SECTION BETWEEN THE PARENTHESIS ONLY - DO NOT REMOVE ANYTHING ELSE ------ #
+#--------INSTRUCTIONS ------#
+# 1. Fraxeum is a permissioned blockchain. You must verify your identity with Telegram before you start this process.
+# 2. Add your email address to the email_address variable in Section 1. This email_address MUST match the email_address you verified using Telegram.
+# 3. If you are installing a node on the TESTNET you don't need to change anything else.
+# 4. If you are installing a node on the MAINNET you need to edit Section 2 and Section 3.
+#--------------------------#
+
+
+#-------- SECTION 1 -------#
 # 
 # EXAMPLE: email_address="your@emailaddr.ess" <--- Be careful to not delete a " or the trailing &&
 # 
-# NOW EDIT SECTION BELOW
 
 
-email_address="YOUR_EMAIL_ADDRESS_HERE" &&
-
+email_address="llewellynmorkel@gmail.com" &&
 
 
 #
-#
-#
-#
-#--------THE END DO NOT EDIT ANYTHING ELSE ------
+#---------------------------#
 
 
-#-------- TARGET BLOCKCHAIN PARAMS ------ #
+#-------- SECTION 2 -------#
+#
+# Comment (add a hash sign (#) before the option) you DON'T need. 
 # 
-# Which blockchain are you connecting to? Uncomment (remove the # in front of the text) the applicable one
-# 
-target_chain="FraxTest" &&                 #<----- IF UNCOMMENTED CONNECTING TO THE DREAMBLOCK TEST CHAIN
-
-# target_chain="db_livechain" &&            #<----- IF UNCOMMENTED CONNECTING TO THE DREAMBLOCK LIVE CHAIN
+target_chain="FraxTest" &&                 #<----- UNCOMMENTED IF CONNECTING TO THE FRAXEUM TESTNET
+# target_chain="db_livechain" &&           #<----- UNCOMMENTED IF CONNECTING TO THE FRAXEUM MAINNET
 #
+#--------------------------#
+
+
+#--------------------------------  DO NOT EDIT THIS SECTION -----------------------------------#
 echo "::~~~~~~~~~UPDATING SERVER SOFTWARE~~~~~~~~~~~::" &&	
 
 #sudo apt-get update &&
@@ -62,36 +68,48 @@ sudo ./start_node &&
 
 echo "::~~~~~~~~~~~~CONFIGURING SERVICE~~~~~~~~~~~~~::" &&
 
-./multichain-cli -datadir="./datadir" $target_chain getruntimeparams | jq '.handshakelocal' > nodeaddress.tmp &&
+cd /apps && 
 
-node_address=$(<nodeaddress.tmp) &&
+sudo ./start_node > nodeaddress.tmp &&
 
-rm nodeaddress.tmp &&
+node_address=$(grep "grant" nodeaddress.tmp | head -1 | cut -d " " -f 4) &&
 
 ip_address=$(curl -s https://api.ipify.org) &&
 
 echo "::~~~~~~~~~~ACTIVATING NODE~~~~~~~~~~~::" &&
 
-httpString="c=addminer&token=14DCeawRF6gg761SCespoig30bE&email=$email_address&address=${node_address:1:-1}&ip=$ip_address&description=$servername" && 
+httpString="c=addminer&token=&email=$email_address&address=$node_address&ip=$ip_address&description=$servername" && 
 
-echo "REQUEST STRING: $httpString" &&
+echo $httpString >> miner_activation_report.dat &&
 
-#------------------------------ SECTION 3: TARGET BLOCKCHAIN PARAMS ----------------------------------- #
+echo "NodeAddress: $node_address" &&
+
+#---------------------------------------------------------------------------------------------#
+
+
+
+
+#-------- SECTION 3 -------#
 # 
 # Which blockchain are you connecting to? Uncomment (remove the # in front of the text) the applicable one. 
 # REMEMBER to comment the other.
 # 
 response=$(curl -d $httpString https://api.fraxeum.org/demov1) &&        # UNCOMMENT FOR TESTNET
- #response=$(curl -d $httpString https://api.fraxeum.org/v1) &&          # UNCOMMENT FOR MAINNET
+#response=$(curl -d $httpString https://api.fraxeum.org/v1) &&          # UNCOMMENT FOR MAINNET
 #
 #
-#
-##-------------------------------------------------------------------------------------------------------#
+##-------------------------#
 
 
 
+#--------------------------------  DO NOT EDIT THIS SECTION -----------------------------------#
 echo $response >> miner_activation_report.dat &&
 
-echo "::   ~~~~~~~~  SETTING UP NODE MONITORING AND RESTART    ~~~~~~~~~   ::" &&
+echo "::~~~~~~~~~STARTING NODE MONITORING~~~~~~~~~~::" &&
+
+sudo ./start_node &&
+
+echo "::~~~~~~~~~SETTING UP NODE MONITORING~~~~~~~~~~::" &&
 
 (crontab -l 2>/dev/null; echo "@reboot cd /apps && ./start_node") | crontab - 
+#----------------------------------------------------------------------------------------------#
