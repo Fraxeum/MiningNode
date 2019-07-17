@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cat flogo.txt
+
 #--------INSTRUCTIONS ------#
 # 1. Fraxeum is a permissioned blockchain. You must verify your identity with Telegram before you start this process.
 # 2. Add your email address to the email_address variable in Section 1. This email_address MUST match the email_address you verified using Telegram.
