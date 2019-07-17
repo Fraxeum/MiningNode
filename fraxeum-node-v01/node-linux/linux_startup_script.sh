@@ -14,7 +14,7 @@
 # 
 
 
-email_address="llewellynmorkel@gmail.com" &&
+email_address="YOUR_VERIFIED_EMAIL_ADDRESS" &&
 
 
 #
