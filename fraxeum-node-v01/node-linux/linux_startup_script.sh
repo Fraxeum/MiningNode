@@ -122,6 +122,8 @@ echo "::~~~~~~~~~SETTING UP NODE MONITORING~~~~~~~~~~::" &&
 
 echo "::~~~~~~~~~UPGRADING SERVER SOFTWARE~~~~~~~~~~~::" &&	
 
+sudo apt update && 
+
 sudo apt -y upgrade && 
 
 sudo reboot
