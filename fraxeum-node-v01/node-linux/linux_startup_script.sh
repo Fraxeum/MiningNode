@@ -1,6 +1,11 @@
 #!/bin/bash
 
-cat flogo.txt
+#--------UBUNTU 18.10, 18.04, 16.04 COMPATIBLE------#
+
+#This script works with a standard, out of the box installation of Ubuntu 18.04 and 16.04. 
+
+
+#---------------------------------------------------------#
 
 #--------INSTRUCTIONS ------#
 # 1. Fraxeum is a permissioned blockchain. You must verify your identity with Telegram before you start this process.
@@ -16,7 +21,7 @@ cat flogo.txt
 # 
 
 
-email_address="YOUR_VERIFIED_EMAIL_ADDRESS" &&
+email_address="YOUR_EMAIL_ADDRESS" &&
 
 
 #
@@ -34,13 +39,7 @@ target_chain="FraxTest" &&                 #<----- UNCOMMENTED IF CONNECTING TO 
 
 
 #--------------------------------  DO NOT EDIT THIS SECTION -----------------------------------#
-echo "::~~~~~~~~~UPDATING SERVER SOFTWARE~~~~~~~~~~~::" &&	
 
-#sudo apt-get update &&
-
-echo "" &&
-
-servername=$(sudo hostname) &&
 
 echo "::~~~~~~~~~~~INSTALLING JQ~~~~~~~~~~~~::" &&
 
@@ -48,15 +47,17 @@ sudo apt install -y jq &&
 
 echo "::~~~~~~~~~~~INSTALLING CURL ~~~~~~~~~~~~::" &&
 
-sudo apt install curl &&
+sudo apt install --assume-yes curl  &&
 
 echo "::~~~~~~~~~~~INSTALLING GIT~~~~~~~~~~~~::" &&
 
 sudo apt install git &&
 
-curl -L https://www.opscode.com/chef/install.sh | sudo bash &&
+echo "::~~~~~~~STARTING NODE INSTALL~~~~~~~~::" &&
 
-echo "" &&
+servername=$(sudo hostname) &&
+
+curl -L https://www.opscode.com/chef/install.sh | sudo bash &&
 
 echo "::~~~~~~~~~~CLONING NODE LIB~~~~~~~~~~~::" &&
 
@@ -117,5 +118,10 @@ sudo ./start_node &&
 
 echo "::~~~~~~~~~SETTING UP NODE MONITORING~~~~~~~~~~::" &&
 
-(crontab -l 2>/dev/null; echo "@reboot cd /apps && ./start_node") | crontab - 
-#----------------------------------------------------------------------------------------------#
+(crontab -l 2>/dev/null; echo "@reboot cd /apps && ./start_node") | crontab - && 
+
+echo "::~~~~~~~~~UPGRADING SERVER SOFTWARE~~~~~~~~~~~::" &&	
+
+sudo apt -y upgrade && 
+
+sudo reboot
