@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#--------UBUNTU 18.10, 18.04, 16.04 COMPATIBLE------#
+#--------UBUNTU 19.04, 18.10, 18.04, 16.04 COMPATIBLE------#
 
 #This script works with a standard, out of the box installation of Ubuntu 18.04 and 16.04. 
 
@@ -20,9 +20,7 @@
 # EXAMPLE: email_address="your@emailaddr.ess" <--- Be careful to not delete a " or the trailing &&
 # 
 
-
-email_address="YOUR_EMAIL_ADDRESS" &&
-
+email_address="YOUR_EMAIL_ADDY_HERE" &&
 
 #
 #---------------------------#
@@ -32,7 +30,7 @@ email_address="YOUR_EMAIL_ADDRESS" &&
 #
 # Comment (add a hash sign (#) before the option) you DON'T need. 
 # 
-target_chain="FraxTest" &&                 #<----- UNCOMMENTED IF CONNECTING TO THE FRAXEUM TESTNET
+target_chain="TestNet" &&                 #<----- UNCOMMENTED IF CONNECTING TO THE FRAXEUM TESTNET
 # target_chain="db_livechain" &&           #<----- UNCOMMENTED IF CONNECTING TO THE FRAXEUM MAINNET
 #
 #--------------------------#
@@ -40,18 +38,23 @@ target_chain="FraxTest" &&                 #<----- UNCOMMENTED IF CONNECTING TO 
 
 #--------------------------------  DO NOT EDIT THIS SECTION -----------------------------------#
 
+echo "::~~~~~~~~~~~UPDATING ~~~~~~~~~~~~::" &&
+
+sudo killall apt-get && 
+
+sudo apt-get -y update &&
 
 echo "::~~~~~~~~~~~INSTALLING JQ~~~~~~~~~~~~::" &&
 
-sudo apt install -y jq && 
+sudo apt-get install -y jq && 
 
 echo "::~~~~~~~~~~~INSTALLING CURL ~~~~~~~~~~~~::" &&
 
-sudo apt install --assume-yes curl  &&
+sudo apt-get install --assume-yes curl  &&
 
 echo "::~~~~~~~~~~~INSTALLING GIT~~~~~~~~~~~~::" &&
 
-sudo apt install git &&
+sudo apt-get install git &&
 
 echo "::~~~~~~~STARTING NODE INSTALL~~~~~~~~::" &&
 
@@ -122,9 +125,7 @@ echo "::~~~~~~~~~SETTING UP NODE MONITORING~~~~~~~~~~::" &&
 
 echo "::~~~~~~~~~UPGRADING SERVER SOFTWARE~~~~~~~~~~~::" &&	
 
-sudo apt update && 
-
-sudo apt -y upgrade && 
+sudo apt-get -y upgrade && 
 
 echo "*********WARNING********* " &&
 
