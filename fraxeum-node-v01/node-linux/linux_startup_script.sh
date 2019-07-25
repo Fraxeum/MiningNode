@@ -38,17 +38,21 @@ target_chain="TestNet" &&                 #<----- UNCOMMENTED IF CONNECTING TO T
 
 #--------------------------------  DO NOT EDIT THIS SECTION -----------------------------------#
 
+echo "::~~~~~~~~FETCH UPDATE LIST ~~~~~~~~~~::" &&
+
+sudo apt -y update &&
+
 echo "::~~~~~~~~~~~INSTALLING JQ~~~~~~~~~~~~::" &&
 
-sudo apt-get install -y jq && 
+sudo apt install -y jq && 
 
 echo "::~~~~~~~~~~~INSTALLING CURL ~~~~~~~~~~~~::" &&
 
-sudo apt-get install --assume-yes curl  &&
+sudo apt install --assume-yes curl  &&
 
 echo "::~~~~~~~~~~~INSTALLING GIT~~~~~~~~~~~~::" &&
 
-sudo apt-get install git &&
+sudo apt install git &&
 
 echo "::~~~~~~~STARTING NODE INSTALL~~~~~~~~::" &&
 
