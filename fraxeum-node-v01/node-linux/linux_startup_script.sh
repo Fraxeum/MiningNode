@@ -40,8 +40,6 @@ target_chain="TestNet" &&                 #<----- UNCOMMENTED IF CONNECTING TO T
 
 echo "::~~~~~~~~~~~UPDATING ~~~~~~~~~~~~::" &&
 
-sudo killall apt-get && 
-
 sudo apt-get -y update &&
 
 echo "::~~~~~~~~~~~INSTALLING JQ~~~~~~~~~~~~::" &&
