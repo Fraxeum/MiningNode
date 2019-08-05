@@ -20,7 +20,7 @@
 # EXAMPLE: email_address="your@emailaddr.ess" <--- Be careful to not delete a " or the trailing &&
 # 
 
-email_address="llewellynmorkel@gmail.com" &&
+email_address="YOUR_EMAIL_ADDRESS_HERE" &&
 
 #
 #---------------------------#
