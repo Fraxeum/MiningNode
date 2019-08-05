@@ -131,4 +131,4 @@ echo "Rebooting in 30 seconds. Press CTRL-C to abort." &&
 
 sudo sleep 30 &&
 
-sudo reboot
+#sudo reboot
