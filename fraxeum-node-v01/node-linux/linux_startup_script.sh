@@ -20,7 +20,7 @@
 # EXAMPLE: email_address="your@emailaddr.ess" <--- Be careful to not delete a " or the trailing &&
 # 
 
-email_address="YOUR_EMAIL_ADDY_HERE" &&
+email_address="YOUR_EMAIL_ADDRESS_HERE" &&
 
 #
 #---------------------------#
@@ -38,33 +38,31 @@ target_chain="TestNet1.02" &&                 #<----- UNCOMMENTED IF CONNECTING 
 
 #--------------------------------  DO NOT EDIT THIS SECTION -----------------------------------#
 
-echo "::~~~~~~~~FETCH UPDATE LIST ~~~~~~~~~~::" &&
+sleep 30 &&
 
-sudo apt -y update &&
+#echo "::~~~~~~~~~~~INSTALLING JQ~~~~~~~~~~~~::" &&
 
-echo "::~~~~~~~~~~~INSTALLING JQ~~~~~~~~~~~~::" &&
+sudo apt-get install -y jq && 
 
-sudo apt install -y jq && 
+#echo "::~~~~~~~~~~~INSTALLING CURL ~~~~~~~~~~~~::" &&
 
-echo "::~~~~~~~~~~~INSTALLING CURL ~~~~~~~~~~~~::" &&
+sudo apt-get install --assume-yes curl  &&
 
-sudo apt install --assume-yes curl  &&
+#echo "::~~~~~~~~~~~INSTALLING GIT~~~~~~~~~~~~::" &&
 
-echo "::~~~~~~~~~~~INSTALLING GIT~~~~~~~~~~~~::" &&
+sudo apt-get install git &&
 
-sudo apt install git &&
-
-echo "::~~~~~~~STARTING NODE INSTALL~~~~~~~~::" &&
+#echo "::~~~~~~~STARTING NODE INSTALL~~~~~~~~::" &&
 
 servername=$(sudo hostname) &&
 
 curl -L https://www.opscode.com/chef/install.sh | sudo bash &&
 
-echo "::~~~~~~~~~~CLONING NODE LIB~~~~~~~~~~~::" &&
+#echo "::~~~~~~~~~~CLONING NODE LIB~~~~~~~~~~~::" &&
 
 git clone https://github.com/Fraxeum/MiningNode.git && # Mining node
 
-echo "::~~~~~~~~~~~~INSTALL NODE~~~~~~~~~~~~~::" &&
+#echo "::~~~~~~~~~~~~INSTALL NODE~~~~~~~~~~~~~::" &&
 
 cd MiningNode/fraxeum-node-v01/node-linux &&
 
@@ -72,25 +70,25 @@ sudo sh install_node &&
 
 cd /apps &&
 
-sudo ./start_node &&
-
-echo "::~~~~~~~~~~~~CONFIGURING SERVICE~~~~~~~~~~~~~::" &&
-
-cd /apps && 
+#echo "::~~~~~~~~~~~~CONFIGURING SERVICE~~~~~~~~~~~~~::" &&
 
 sudo ./start_node > nodeaddress.tmp &&
 
 node_address=$(grep "grant" nodeaddress.tmp | head -1 | cut -d " " -f 4) &&
 
+echo "Node Address: $node_address" &&
+
 ip_address=$(curl -s https://api.ipify.org) &&
 
-echo "::~~~~~~~~~~ACTIVATING NODE~~~~~~~~~~~::" &&
+echo "IP Address: $ip_address" &&
+
+#echo "::~~~~~~~~~~ACTIVATING NODE~~~~~~~~~~~::" &&
+
+sudo ./start_node &&
 
 httpString="c=addminer&token=&email=$email_address&address=$node_address&ip=$ip_address&description=$servername" && 
 
 echo $httpString >> miner_activation_report.dat &&
-
-echo "NodeAddress: $node_address" &&
 
 #---------------------------------------------------------------------------------------------#
 
@@ -111,24 +109,23 @@ response=$(curl -d $httpString https://api.fraxeum.org/demov1) &&        # UNCOM
 
 
 #--------------------------------  DO NOT EDIT THIS SECTION -----------------------------------#
+
 echo $response >> miner_activation_report.dat &&
 
-echo "::~~~~~~~~~STARTING NODE MONITORING~~~~~~~~~~::" &&
-
-sudo ./start_node &&
-
-echo "::~~~~~~~~~SETTING UP NODE MONITORING~~~~~~~~~~::" &&
+#echo "::~~~~~~~~~SETTING UP NODE MONITORING~~~~~~~~~~::" &&
 
 (crontab -l 2>/dev/null; echo "@reboot cd /apps && ./start_node") | crontab - && 
 
-echo "::~~~~~~~~~UPGRADING SERVER SOFTWARE~~~~~~~~~~~::" &&	
+#echo "::~~~~~~~~~UPGRADING SERVER SOFTWARE~~~~~~~~~~~::" &&	
 
-sudo apt-get -y upgrade && 
+apt -y update &&
 
-echo "*********WARNING********* " &&
+apt-get -y upgrade && 
 
-echo "Rebooting in 30 seconds. Press CTRL-C to abort." &&
+#echo "*********WARNING********* " &&
 
-sudo sleep 30 &&
+#echo "Rebooting in 30 seconds. Press CTRL-C to abort." &&
 
-sudo reboot
+sleep 30 &&
+
+reboot
