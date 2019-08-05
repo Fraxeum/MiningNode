@@ -30,7 +30,7 @@ email_address="YOUR_EMAIL_ADDY_HERE" &&
 #
 # Comment (add a hash sign (#) before the option) you DON'T need. 
 # 
-target_chain="TestNet" &&                 #<----- UNCOMMENTED IF CONNECTING TO THE FRAXEUM TESTNET
+target_chain="TestNet1.02" &&                 #<----- UNCOMMENTED IF CONNECTING TO THE FRAXEUM TESTNET
 # target_chain="db_livechain" &&           #<----- UNCOMMENTED IF CONNECTING TO THE FRAXEUM MAINNET
 #
 #--------------------------#
