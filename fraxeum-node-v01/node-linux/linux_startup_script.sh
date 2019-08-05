@@ -20,7 +20,7 @@
 # EXAMPLE: email_address="your@emailaddr.ess" <--- Be careful to not delete a " or the trailing &&
 # 
 
-email_address="YOUR_EMAIL_ADDRESS_HERE" &&
+email_address="llewellynmorkel@gmail.com" &&
 
 #
 #---------------------------#
@@ -37,8 +37,6 @@ target_chain="TestNet1.02" &&                 #<----- UNCOMMENTED IF CONNECTING 
 
 
 #--------------------------------  DO NOT EDIT THIS SECTION -----------------------------------#
-
-sleep 30 &&
 
 #echo "::~~~~~~~~~~~INSTALLING JQ~~~~~~~~~~~~::" &&
 
@@ -72,15 +70,21 @@ cd /apps &&
 
 #echo "::~~~~~~~~~~~~CONFIGURING SERVICE~~~~~~~~~~~~~::" &&
 
+#./multichain-cli -datadir="./datadir" $target_chain getruntimeparams | jq '.handshakelocal' > nodeaddress.tmp &&
+
+#node_address=$(<nodeaddress.tmp) &&
+
+#node_address=$(sed -e 's/^"//' -e 's/"$//' <<< $(<nodeaddress.tmp)) &&
+
 sudo ./start_node > nodeaddress.tmp &&
 
 node_address=$(grep "grant" nodeaddress.tmp | head -1 | cut -d " " -f 4) &&
 
-echo "Node Address: $node_address" &&
+#echo "Node Address: $node_address" &&
 
 ip_address=$(curl -s https://api.ipify.org) &&
 
-echo "IP Address: $ip_address" &&
+#echo "IP Address: $ip_address" &&
 
 #echo "::~~~~~~~~~~ACTIVATING NODE~~~~~~~~~~~::" &&
 
@@ -88,7 +92,7 @@ sudo ./start_node &&
 
 httpString="c=addminer&token=&email=$email_address&address=$node_address&ip=$ip_address&description=$servername" && 
 
-echo $httpString >> miner_activation_report.dat &&
+#echo $httpString >> miner_activation_report.dat &&
 
 #---------------------------------------------------------------------------------------------#
 
@@ -110,7 +114,7 @@ response=$(curl -d $httpString https://api.fraxeum.org/demov1) &&        # UNCOM
 
 #--------------------------------  DO NOT EDIT THIS SECTION -----------------------------------#
 
-echo $response >> miner_activation_report.dat &&
+#echo $response >> miner_activation_report.dat &&
 
 #echo "::~~~~~~~~~SETTING UP NODE MONITORING~~~~~~~~~~::" &&
 
@@ -118,14 +122,14 @@ echo $response >> miner_activation_report.dat &&
 
 #echo "::~~~~~~~~~UPGRADING SERVER SOFTWARE~~~~~~~~~~~::" &&	
 
-apt -y update &&
+sudo apt -y update &&
 
-apt-get -y upgrade && 
+sudo apt-get -y upgrade && 
 
 #echo "*********WARNING********* " &&
 
 #echo "Rebooting in 30 seconds. Press CTRL-C to abort." &&
 
-sleep 30 &&
+sudo sleep 30 &&
 
-reboot
+sudo reboot
