@@ -70,29 +70,15 @@ cd /apps &&
 
 #echo "::~~~~~~~~~~~~CONFIGURING SERVICE~~~~~~~~~~~~~::" &&
 
-#./multichain-cli -datadir="./datadir" $target_chain getruntimeparams | jq '.handshakelocal' > nodeaddress.tmp &&
-
-#node_address=$(<nodeaddress.tmp) &&
-
-#node_address=$(sed -e 's/^"//' -e 's/"$//' <<< $(<nodeaddress.tmp)) &&
-
 sudo ./start_node > nodeaddress.tmp &&
 
 node_address=$(grep "grant" nodeaddress.tmp | head -1 | cut -d " " -f 4) &&
 
-#echo "Node Address: $node_address" &&
-
 ip_address=$(curl -s https://api.ipify.org) &&
-
-#echo "IP Address: $ip_address" &&
-
-#echo "::~~~~~~~~~~ACTIVATING NODE~~~~~~~~~~~::" &&
-
-sudo ./start_node &&
 
 httpString="c=addminer&token=&email=$email_address&address=$node_address&ip=$ip_address&description=$servername" && 
 
-#echo $httpString >> miner_activation_report.dat &&
+echo $httpString >> miner_activation_report.dat &&
 
 #---------------------------------------------------------------------------------------------#
 
@@ -114,7 +100,7 @@ response=$(curl -d $httpString https://api.fraxeum.org/demov1) &&        # UNCOM
 
 #--------------------------------  DO NOT EDIT THIS SECTION -----------------------------------#
 
-#echo $response >> miner_activation_report.dat &&
+echo $response >> miner_activation_report.dat &&
 
 #echo "::~~~~~~~~~SETTING UP NODE MONITORING~~~~~~~~~~::" &&
 
