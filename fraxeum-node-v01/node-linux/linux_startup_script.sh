@@ -30,8 +30,8 @@ email_address="YOUR_EMAIL_ADDRESS_HERE" &&
 #
 # Comment (add a hash sign (#) before the option) you DON'T need. 
 # 
-target_chain="TestNet1.02" &&                 #<----- UNCOMMENTED IF CONNECTING TO THE FRAXEUM TESTNET
-# target_chain="db_livechain" &&           #<----- UNCOMMENTED IF CONNECTING TO THE FRAXEUM MAINNET
+# target_chain="TestNet1.02" &&                 #<----- UNCOMMENTED IF CONNECTING TO THE FRAXEUM TESTNET
+target_chain="Fraxeum" &&           #<----- UNCOMMENTED IF CONNECTING TO THE FRAXEUM MAINNET
 #
 #--------------------------#
 
@@ -90,8 +90,8 @@ echo $httpString >> miner_activation_report.dat &&
 # Which blockchain are you connecting to? Uncomment (remove the # in front of the text) the applicable one. 
 # REMEMBER to comment the other.
 # 
-response=$(curl -d $httpString https://api.fraxeum.org/demov1) &&        # UNCOMMENT FOR TESTNET
-#response=$(curl -d $httpString https://api.fraxeum.org/v1) &&          # UNCOMMENT FOR MAINNET
+#response=$(curl -d $httpString https://api.fraxeum.org/demov1) &&        # UNCOMMENT FOR TESTNET
+response=$(curl -d $httpString https://api.fraxeum.org/v1) &&          # UNCOMMENT FOR MAINNET
 #
 #
 ##-------------------------#
