@@ -1,3 +1,6 @@
+![Fraxeum-Logo](https://fraxeum.org/assets/img/logo-400x120-colour.png)
+
+
 # FRAXEUM MINER INSTALL GUIDE
 ## Introduction
 Fraxeum implements a permissioned blockchain forked from the [Multichain] (https://multichain.com) core source code. 
