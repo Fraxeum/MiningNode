@@ -10,7 +10,7 @@ Before continuing, please read the Fraxeum Whitepaper, with special focus on the
 1. The Fraxeum Blockchain: Pages 11 to 18
 2. Coin types: Pages 25 to 27
 3. [Fraxeum whitepaper] (https://fraxeum.org/whitepaper/Fraxeum_Whitepaper.pdf)
-4.[Fraxeum Node Install Doc] (https://fraxeum.org/nodes/Fraxeum_Node_Installation_Guide.pdf)
+4. [Fraxeum Node Install Doc] (https://fraxeum.org/nodes/Fraxeum_Node_Installation_Guide.pdf)
 
 ## Mining requirements
 ### Minimum system requirement
