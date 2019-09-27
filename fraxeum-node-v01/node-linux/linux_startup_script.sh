@@ -12,6 +12,12 @@
 # 2. Add your email address to the email_address variable in Section 1. This email_address MUST match the email_address you verified using Telegram.
 # 3. If you are installing a node on the TESTNET you don't need to change anything else.
 # 4. If you are installing a node on the MAINNET you need to edit Section 2 and Section 3.
+# 5. BEFORE YOU CAN INSTALL A MINING SERVER - YOU START DO THE FOLLOWING:
+#    a) Join Fraxeum's Telegram Group: https://t.me/fraxeum
+#    b) Complete the Telegram KYC process: https://mine.fraxeum.org
+#    c) Use the email address that you used in (b) above for this purpose.
+# 6. Please report issues to info [a.t] fraxeum.org
+# 7. Feel free to improve improve this script - any work done is rewarded in Fraxeum Coin.
 #--------------------------#
 
 
@@ -20,18 +26,16 @@
 # EXAMPLE: email_address="your@emailaddr.ess" <--- Be careful to not delete a " or the trailing &&
 # 
 
-email_address="YOUR_EMAIL_ADDRESS_HERE" &&
+email_address="YOUR_EMAIL_ADDRESS_GOES_HERE" &&
 
 #
 #---------------------------#
 
 
 #-------- SECTION 2 -------#
-#
-# Comment (add a hash sign (#) before the option) you DON'T need. 
 # 
-#target_chain="TestNet1.02" &&                 #<----- UNCOMMENTED IF CONNECTING TO THE FRAXEUM TESTNET
-target_chain="Fraxeum" &&           #<----- UNCOMMENTED IF CONNECTING TO THE FRAXEUM MAINNET
+# 
+target_chain="Fraxeum" &&           #<----- CONNECTING TO THE FRAXEUM MAINNET
 #
 #--------------------------#
 
