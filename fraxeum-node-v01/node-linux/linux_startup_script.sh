@@ -96,8 +96,8 @@ echo $httpString >> miner_activation_report.dat &&
 # Which blockchain are you connecting to? Uncomment (remove the # in front of the text) the applicable one. 
 # REMEMBER to comment the other.
 # 
-# response=$(curl -d $httpString #https://api.fraxeum.org/demov1) &&        # UNCOMMENT FOR TESTNET
-response=$(curl -d $httpString https://api.fraxeum.org/v1) &&     # UNCOMMENT FOR MAINNET
+# response=$(curl -d $httpString #https://gw.fraxeum.org/demov1) &&        # UNCOMMENT FOR TESTNET
+response=$(curl -d $httpString https://gw.fraxeum.org/v1) &&     # UNCOMMENT FOR MAINNET
 #
 #
 ##-------------------------#
